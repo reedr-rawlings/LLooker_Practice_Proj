@@ -44,6 +44,8 @@ view: order_items {
   }
 
   measure: sum {
+    description: "Sum of the sale price"
+    label: "Sumsum"
     sql: ${sale_price} ;;
     type: sum
 
