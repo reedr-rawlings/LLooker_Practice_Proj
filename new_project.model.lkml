@@ -25,6 +25,12 @@ explore: inventory_items {
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
     relationship: many_to_one
   }
+
+  join: order_items {
+    type: left_outer
+    sql_on: ${inventory_items.id} = ${order_items.inventory_item_id} ;;
+    relationship: one_to_many
+  }
 }
 
 explore: order_items {
@@ -65,11 +71,22 @@ explore: orders {
 }
 
 explore: products {
-  always_filter: {
-    filters: {
-      field: brand
-      value: "Puma"
-    }
+  # always_filter: {
+    # filters: {
+    #  field: brand
+    #  value: "Puma"
+  #  }
+  #}
+  join: inventory_items {
+    type: left_outer
+    sql_on: ${inventory_items.product_id} = ${products.id} ;;
+    relationship: many_to_one
+  }
+
+  join: order_items {
+    type: left_outer
+    sql_on: ${products.id} = ${order_items.inventory_item_id};;
+    relationship: many_to_one
   }
 }
 

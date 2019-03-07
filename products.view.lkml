@@ -46,4 +46,9 @@ view: products {
     type: count
     drill_fields: [id, item_name, inventory_items.count]
   }
+
+  measure: gross_product {
+    type: number
+    sql: ${retail_price} – ${inventory_items.cost} ;;
+  }
 }
