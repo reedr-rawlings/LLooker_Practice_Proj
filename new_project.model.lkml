@@ -19,6 +19,7 @@ explore: events {
 }
 
 explore: inventory_items {
+  fields: [ALL_FIELDS*, -products.brand]
   join: products {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
@@ -27,6 +28,8 @@ explore: inventory_items {
 }
 
 explore: order_items {
+  view_label: "Order Items Jumanji"
+  sql_always_where: ${sale_price} >= 100.00 ;;
   join: inventory_items {
     type: left_outer
     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
@@ -54,13 +57,21 @@ explore: order_items {
 
 explore: orders {
   join: users {
+    fields: [users.age]
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
   }
 }
 
-explore: products {}
+explore: products {
+  always_filter: {
+    filters: {
+      field: brand
+      value: "Puma"
+    }
+  }
+}
 
 explore: schema_migrations {}
 
