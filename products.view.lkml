@@ -42,13 +42,31 @@ view: products {
     sql: ${TABLE}.sku ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [id, item_name, inventory_items.count]
-  }
-
-  measure: gross_product {
+  dimension: gross_product {
     type: number
     sql: ${retail_price} – ${inventory_items.cost} ;;
   }
+
+  measure: count {
+    type: count
+    drill_fields: [id, item_name, inventory_items.count]
+
+  }
+
+  measure: count_no_active {
+    type: count
+    drill_fields: [id, item_name, inventory_items.count]
+    filters: {
+      field:category
+      value: "Active"
+    }
+  }
+
+  measure: no_active_gross {
+    type:  number
+    sql: (${count} - ${count_no_active})/4 ;;
+
+ }
+
+
 }

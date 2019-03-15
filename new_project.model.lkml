@@ -19,7 +19,7 @@ explore: events {
 }
 
 explore: inventory_items {
-  fields: [ALL_FIELDS*, -products.brand]
+  fields: [ALL_FIELDS*]
   join: products {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
@@ -80,7 +80,7 @@ explore: products {
   join: inventory_items {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
-    relationship: many_to_one
+    relationship: one_to_one
   }
 
   join: order_items {
