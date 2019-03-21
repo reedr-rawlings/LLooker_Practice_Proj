@@ -28,6 +28,7 @@ view: products {
   }
 
   dimension: rank {
+    alias: [ rank.alias ]
     type: number
     sql: ${TABLE}.rank ;;
   }
