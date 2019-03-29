@@ -35,7 +35,7 @@ explore: inventory_items {
 
 explore: order_items {
   view_label: "Order Items Jumanji"
-  sql_always_where: ${sale_price} >= 100.00 ;;
+  #sql_always_where: ${sale_price} >= 100.00 ;;
   join: inventory_items {
     type: left_outer
     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
@@ -99,6 +99,8 @@ explore: user_data {
     relationship: many_to_one
   }
 }
+
+explore: derived_table {}
 
 explore: users {}
 

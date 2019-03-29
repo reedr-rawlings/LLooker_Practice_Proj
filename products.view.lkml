@@ -10,6 +10,7 @@ view: products {
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
+    html:  <a href="https://www.google.com/search?q={{value}}">{{ value }}</a> ;;
   }
 
   dimension: category {
@@ -27,8 +28,8 @@ view: products {
     sql: ${TABLE}.item_name ;;
   }
 
-  dimension: rank {
-    alias: [ rank.alias ]
+  dimension: rank_alias {
+    alias: [ rank ]
     type: number
     sql: ${TABLE}.rank ;;
   }
