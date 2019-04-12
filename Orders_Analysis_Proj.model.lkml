@@ -71,12 +71,6 @@ explore: orders {
 }
 
 explore: products {
-  # always_filter: {
-    # filters: {
-    #  field: brand
-    #  value: "Puma"
-  #  }
-  #}
   join: inventory_items {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
@@ -86,6 +80,18 @@ explore: products {
   join: order_items {
     type: left_outer
     sql_on: ${products.id} = ${order_items.inventory_item_id};;
+    relationship: many_to_one
+  }
+
+    join: orders {
+    type: left_outer
+    sql_on: ${order_items.order_id} = ${orders.id} ;;
+    relationship: many_to_one
+  }
+
+  join: users {
+    type: left_outer
+    sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
   }
 }
