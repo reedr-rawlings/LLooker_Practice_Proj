@@ -44,13 +44,6 @@ view: order_items {
     drill_fields: [id, inventory_items.id, orders.id]
   }
 
-#  measure: notes {
-#    type:  number
- #   sql:  case when "${TABLE}" = "products" then max(${count})
-#               when "{{ _view._name }}" = "orders_items" then max(${count})
-#              else sum(${count}) end;;
-#/   }
-
   parameter: sale_price_metric_picker {
     description: "Use with the Sale Price Metric measure"
     type: unquoted
@@ -87,17 +80,7 @@ view: order_items {
     suggest_dimension: products.category
   }
 
-  measure: category_count {
-    description: "Use with the Category Count Picker filter-only field"
-    type: sum
-    sql:
-    CASE
-      WHEN {% condition category_count_picker %} ${products.category} {% endcondition %}
-      THEN 1
-      ELSE 0
-    END
-  ;;
-  }
+#
 
   measure: sum {
     description: "Sum of the sale price"
@@ -113,11 +96,5 @@ view: order_items {
     value_format_name: usd
   }
 
-  measure: total_profit {
-    hidden: yes
-    type: number
-    sql: ${total_revenue}-${inventory_items.cost} ;;
-    value_format_name: usd
-  }
 
 }

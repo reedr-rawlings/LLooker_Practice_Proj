@@ -15,8 +15,9 @@ explore: events {
     type: left_outer
     sql_on: ${events.user_id} = ${users.id} ;;
     relationship: many_to_one
-  }
+   }
 }
+
 
 explore: inventory_items {
   fields: [ALL_FIELDS*]
@@ -33,9 +34,13 @@ explore: inventory_items {
   }
 }
 
+explore: order_items_price_filter {
+  from: order_items
+  sql_always_where: ${sale_price} >= 100.00 ;;
+}
+
 explore: order_items {
-  view_label: "Order Items Jumanji"
-  #sql_always_where: ${sale_price} >= 100.00 ;;
+  view_label: "Order Items no price"
   join: inventory_items {
     type: left_outer
     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
