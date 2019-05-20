@@ -18,6 +18,7 @@ view: orders {
       quarter,
       year
     ]
+    drill_fields: []
     sql: ${TABLE}.created_at ;;
   }
 
@@ -35,5 +36,13 @@ view: orders {
   measure: count {
     type: count
     drill_fields: [id, users.first_name, users.last_name, users.id, order_items.count]
+    html:
+    <br>
+     Value: {{value}}
+    </br>
+    <br>
+    {% if products.brand._in_query %} {{ products.brand._value }} {% else %} {% endif %}
+    </br>
+    ;;
   }
 }
