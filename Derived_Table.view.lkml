@@ -9,12 +9,18 @@ view: derived_table {
     JOIN order_items
     ON orders.id = order_items.order_id
     JOIN products
-    ON products.id = order_items.inventory_item_id;;
+    ON products.id = order_items.inventory_item_id
+    WHERE order_items.inventory_item_id > 100;;
   }
-
+#sadsadasd
   dimension: order_status {
     type: string
     sql:  ${TABLE}.status ;;
+  }
+
+  dimension: item_id {
+    type: number
+    sql: ${TABLE}.order_item_inv_order_id ;;
   }
 
   dimension: order_item_sale_price {

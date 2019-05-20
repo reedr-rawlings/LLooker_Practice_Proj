@@ -58,12 +58,17 @@ view: products {
     type: count
     drill_fields: [id, item_name, inventory_items.count]
     link: {
-      label: "Show as scatter plot"
+      label: "Show as bar plot"
       url: "
       {% assign vis_config = '{\"type\": \"looker_bar\"}' %}
       {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
    }
  }
+
+  measure: average_retail_price {
+    type: average
+    sql: ${retail_price} ;;
+  }
 
 
   measure: count_not_puma {
@@ -72,6 +77,12 @@ view: products {
     filters: {
       field: brand
       value: "puma"
+    }
+    link: {
+      label: "Show as bar plot"
+      url: "
+      {% assign vis_config = '{\"type\": \"looker_bar\"}' %}
+      {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
     }
   }
 

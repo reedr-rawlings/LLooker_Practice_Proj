@@ -111,6 +111,8 @@ explore: user_data {
   }
 }
 
+explore: extend_dt {}
+
 explore: derived_table {}
 
 explore: users {}
