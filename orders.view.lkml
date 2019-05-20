@@ -41,7 +41,7 @@ view: orders {
      Value: {{value}}
     </br>
     <br>
-    {% if products.brand._in_query %} {{ products.brand._value }} {% else %} {% endif %}
+    {% if products.brand._in_query %} {{ products.brand._value }} {% endif %}
     </br>
     ;;
   }
