@@ -17,6 +17,10 @@ view: products {
     html:  <a href="https://www.google.com/search?q={{value}}">{{ value }}</a> ;;
   }
 
+  parameter: does_this_filter {
+    type: date
+  }
+
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;
@@ -101,5 +105,11 @@ view: products {
 
  }
 
+  set: filtered_measures_using_joins {
+    fields: [
+      count_no_active,
+      brand
+    ]
+  }
 
 }

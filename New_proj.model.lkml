@@ -41,6 +41,7 @@ explore: order_items_price_filter {
 
 explore: order_items {
   view_label: "Order Items no price"
+  fields: []
   join: inventory_items {
     type: left_outer
     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
