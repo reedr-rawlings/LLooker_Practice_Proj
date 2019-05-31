@@ -38,7 +38,7 @@ view: order_items {
     sql: ${TABLE}.sale_price ;;
   }
 
-  measure: count {
+  measure: count_label {
     label: "{% if _explore._name == 'order_items' %} From Order_Items {% else %} Not from Order_Items {% endif %}"
     type: count
     drill_fields: [id, inventory_items.id, orders.id]
@@ -80,6 +80,10 @@ view: order_items {
     suggest_dimension: products.category
   }
 
+  filter: date_picker {
+    type: date
+  }
+
 #
 
   measure: sum {
@@ -89,6 +93,7 @@ view: order_items {
     type: sum
 
   }
+
 
   measure: total_revenue {
     type: sum
