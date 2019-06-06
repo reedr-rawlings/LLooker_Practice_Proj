@@ -22,6 +22,32 @@ view: orders {
     sql: ${TABLE}.created_at ;;
   }
 
+  parameter: log_date_interval {
+    type: string
+    allowed_value: {
+      value: "Day"
+    }
+    allowed_value: {
+      value: "Week"
+    }
+    allowed_value: {
+      value: "Month"
+    }
+    allowed_value: {
+      value: "Quarter"
+    }
+  }
+
+  dimension: log_date_timeframe {
+    type: string
+    sql: CASE
+      WHEN {% parameter log_date_interval %} = 'Day'  THEN ${created_date}
+      WHEN {% parameter log_date_interval %} = 'Week'  THEN ${created_week}
+      WHEN {% parameter log_date_interval %} = 'Month'  THEN ${created_month}
+      WHEN {% parameter log_date_interval %} = 'Quarter' THEN ${created_quarter}
+      END ;;
+  }
+
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;

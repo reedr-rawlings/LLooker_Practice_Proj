@@ -38,6 +38,11 @@ view: order_items {
     sql: ${TABLE}.sale_price ;;
   }
 
+  dimension: Heather  {
+    type:  string
+    sql:  "Heather" ;;
+  }
+
   measure: count_label {
     label: "{% if _explore._name == 'order_items' %} From Order_Items {% else %} Not from Order_Items {% endif %}"
     type: count

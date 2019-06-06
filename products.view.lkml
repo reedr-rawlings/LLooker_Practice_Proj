@@ -57,6 +57,11 @@ view: products {
     sql: ${retail_price} – ${inventory_items.cost} ;;
   }
 
+
+
+
+
+
   measure: count {
     label: "Drill Count"
     type: count
