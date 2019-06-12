@@ -88,7 +88,8 @@
       type: count
     }
 
-    measure: stu_hovers {
+
+    measure: stu_color {
       type: count
     }
 
