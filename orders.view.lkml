@@ -22,6 +22,11 @@ view: orders {
     sql: ${TABLE}.created_at ;;
   }
 
+  measure: created_at_time {
+    type: string
+    sql: ${TABLE}.created_at ;;
+  }
+
   parameter: log_date_interval {
     type: string
     allowed_value: {
@@ -57,6 +62,11 @@ view: orders {
     type: number
     # hidden: yes
     sql: ${TABLE}.user_id ;;
+  }
+
+  measure: user_count {
+    type: count_distinct
+    sql: ${user_id} ;;
   }
 
   measure: count {

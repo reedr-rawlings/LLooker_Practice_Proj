@@ -110,6 +110,7 @@ explore: user_data {
     relationship: many_to_one
   }
 }
+explore: csv_to_sql_query {}
 
 explore: extend_dt {}
 
