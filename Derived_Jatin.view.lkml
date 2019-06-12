@@ -88,6 +88,10 @@
       type: count
     }
 
+    measure: stu_color {
+      type: count
+    }
+
     dimension_group: completion_time {
       type: time
       timeframes: [
