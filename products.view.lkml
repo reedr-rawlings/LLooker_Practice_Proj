@@ -8,10 +8,6 @@ view: products {
   }
 
   dimension: brand {
-    description: "how many lines can I right? Can I write tis on a new line like this,
-    cause or do I need to do some sort of escape mechanism?
-
-    Should be a niew line: How does this looke"
     type: string
     sql: ${TABLE}.brand ;;
     html:  <a href="https://www.google.com/search?q={{value}}">{{ value }}</a> ;;
@@ -99,7 +95,7 @@ view: products {
     type: count
     drill_fields: [id, item_name, inventory_items.count]
     filters: {
-      field:category
+      field: category
       value: "Active"
     }
   }

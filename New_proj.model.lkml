@@ -11,6 +11,12 @@ datagroup: new_project_default_datagroup {
 persist_with: new_project_default_datagroup
 
 explore: events {
+#   always_filter: {
+#     filters: {
+#       field: users.table_name
+#       value: "users"
+#     }
+#   }
   join: users {
     type: left_outer
     sql_on: ${events.user_id} = ${users.id} ;;
@@ -20,7 +26,8 @@ explore: events {
 
 
 explore: inventory_items {
-  fields: [ALL_FIELDS*]
+  # Should be throwing an error
+  fields: [ALL_FIELDS*]#, -products.category]
   join: products {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
@@ -116,6 +123,13 @@ explore: extend_dt {}
 
 explore: derived_table {}
 
-explore: users {}
+explore: users {
+#   always_filter: {
+#     filters: {
+#       field: users.table_name
+#       value: "users"
+#     }
+#   }
+}
 
 explore: users_nn {}

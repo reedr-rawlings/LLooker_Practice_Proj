@@ -1,20 +1,5 @@
-view: users {
+view: susers {
   sql_table_name: demo_db.users ;;
-# Liquid parameter for dynamically choosing tables from a schema with the same set up but different names. Errors but works.
-#   sql_table_name: demo_db.{% parameter table_name %} ;;
-#
-#   parameter: table_name {
-#     type: unquoted
-#     default_value: "users"
-#     allowed_value: {
-#       value: "users"
-#       label: "Users"
-#     }
-#     allowed_value: {
-#       value: "users"
-#       label: "User 2 Electric Boogaloo"
-#     }
-#   }
 
   dimension: id {
     primary_key: yes

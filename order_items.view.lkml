@@ -52,6 +52,7 @@ view: order_items {
   parameter: sale_price_metric_picker {
     description: "Use with the Sale Price Metric measure"
     type: unquoted
+    suggestions: ["Total Sale Price", "Average Sale Price"]
     allowed_value: {
       label: "Total Sale Price"
       value: "SUM"
