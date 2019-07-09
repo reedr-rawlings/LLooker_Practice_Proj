@@ -24,6 +24,8 @@ explore: events {
    }
 }
 
+explore: martindata {}
+
 explore: ordersliquidlogic {
   join: inventory_items {
     type: left_outer
