@@ -8,7 +8,16 @@ view: martindata {
         2 AS id, 'user 1' AS user, 'Sam Allison' AS sales_rep, 'Yellow' AS deal_name, 'Initial Contact' AS deal_stage, 'usd' AS currency, 2500 AS deal_value
       UNION ALL
       SELECT
+        13 AS id, 'user 1' AS user, 'Sam Allison' AS sales_rep, 'Yellow' AS deal_name, 'Initial Contact' AS deal_stage, 'usd' AS currency, 3000000 AS deal_value
+      UNION ALL
+      SELECT
         3 AS id, 'user 1' AS user, 'John Smith' AS sales_rep, 'Red' AS deal_name, 'Proposal Sent' AS deal_stage, 'usd' AS currency, 2000 AS deal_value
+      UNION ALL
+      SELECT
+        15 AS id, 'user 1' AS user, 'Sam Allison' AS sales_rep, 'Green' AS deal_name, 'Initial Contact' AS deal_stage, 'usd' AS currency, 400000 AS deal_value
+      UNION ALL
+      SELECT
+        16 AS id, 'user 1' AS user, 'John Smith' AS sales_rep, 'Red' AS deal_name, 'Proposal Sent' AS deal_stage, 'usd' AS currency, 300000 AS deal_value
       UNION ALL
       SELECT
         4 AS id, 'user 1' AS user, 'John Smith' AS sales_rep, 'Blue' AS deal_name, 'Qualification' AS deal_stage, 'eur' AS currency, 1750 AS deal_value
@@ -36,7 +45,9 @@ view: martindata {
       UNION ALL
       SELECT
         12 AS id, 'user 2' AS user, 'Chicken Animal' AS sales_rep, 'Fish' AS deal_name, 'Qualification' AS deal_stage, 'inr' AS currency, 100000 AS deal_value
-
+      UNION ALL
+      SELECT
+        17 AS id, 'user 2' AS user, 'Chicken Animal' AS sales_rep, 'Fish' AS deal_name, 'Qualification' AS deal_stage, 'hkd' AS currency, 100000 AS deal_value
       ;;
   }
 
@@ -417,7 +428,8 @@ view: martindata {
       end ;;
       #        when ${currency} = '&#8377' then '₹' --- Possible Solution
     # keep this copy
-    html: {% if value == "&#8377" %} ₹ {% else %} {{rendered_value}} {% endif %};;
+     html: {% if value == "&#8377" %} ₹ {% else %} {{rendered_value}} {% endif %};;
+    # html: {% if value == "&#8377" %} ₹ {% else %} {{ value }} {% endif %};;
     # keep this copy n html: {% if value == "&#8377" %} ₹ {% else %} {{ value }} {% endif %};;
   }
 
@@ -441,7 +453,7 @@ view: martindata {
   # multi-currency formatting
   measure: total_value_f2 {
     type: sum
-    value_format_name: decimal_0
+    value_format_name: decimal_2
     sql: ${value} ;;
     html: {{ currency_symbol_f._linked_value}} {{rendered_value}} {{ currency_symbol_b._linked_value}};;
   }
