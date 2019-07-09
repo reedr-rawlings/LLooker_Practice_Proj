@@ -22,9 +22,14 @@ view: orders {
     sql: ${TABLE}.created_at ;;
   }
 
-  measure: created_at_time {
+  dimension: diagnostics_timeline {
     type: string
-    sql: ${TABLE}.created_at ;;
+    sql: CONCAT("https://diagnostics-timeline.zooxlabs.com/?run_id=", ${id}, "&ts="||extract(epoch from ${log_date_interval})) ;;
+  }
+
+  measure: created_at_time {
+    type: number
+    sql: CAST(${TABLE}.created_at AS time) ;;
   }
 
   parameter: log_date_interval {

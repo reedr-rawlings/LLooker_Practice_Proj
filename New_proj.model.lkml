@@ -24,6 +24,14 @@ explore: events {
    }
 }
 
+explore: ordersliquidlogic {
+  join: inventory_items {
+    type: left_outer
+    sql_on: ${inventory_items.product_id} = ${ordersliquidlogic.id} ;;
+    relationship: many_to_one
+  }
+}
+
 
 explore: inventory_items {
   # Should be throwing an error

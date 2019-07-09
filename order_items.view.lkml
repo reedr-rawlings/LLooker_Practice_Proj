@@ -1,5 +1,34 @@
 view: order_items {
-  sql_table_name: demo_db.order_items ;;
+    sql_table_name: {% if _user_attributes['unlimited_spectrum'] == "yes" %}
+      demo_db.order_items
+    {% elsif order_id._is_filtered and usage_date._is_filtered == "true" %}
+          demo_db.order_items
+      {% else %}
+          must_filter_on_org_and_date
+    {% endif %} ;;
+
+   sql_table_name: demo_db.order_items ;;
+
+  # dimension: limited_spectrum {
+  #   type: yesno
+  #   sql:  {%if ((usage_date._is_filtered or usage_week._is_filtered)
+  #     and (order_id._is_filtered or inventory_item_id._is_filtered)) %}
+  #   {% endif %};;
+  # }
+
+    dimension_group: usage {
+    type: time
+    timeframes: [
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.returned_at ;;
+  }
 
   dimension: id {
     primary_key: yes
@@ -98,6 +127,11 @@ view: order_items {
     sql: ${sale_price} ;;
     type: sum
 
+  }
+
+  measure: subquery_sum {
+    description: "Trying to subquery in a sql"
+    sql: SELECT max(${sale_price} from (select AVG(${inventory_item_id}) FROM demo_db.order_items) ;;
   }
 
 
