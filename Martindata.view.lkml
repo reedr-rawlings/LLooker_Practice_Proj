@@ -2,37 +2,37 @@ view: martindata {
   derived_table: {
     sql:
       SELECT
-        1 AS id, 'user 1' AS user, 'John Smith' AS sales_rep, 'Green' AS deal_name, 'Initial Contact' AS deal_stage, 'gbp' AS currency, '5,000' AS deal_value
+        1 AS id, 'user 1' AS user, 'John Smith' AS sales_rep, 'Green' AS deal_name, 'Initial Contact' AS deal_stage, 'gbp' AS currency, 5000 AS deal_value
       UNION ALL
       SELECT
-        2 AS id, 'user 1' AS user, 'Sam Allison' AS sales_rep, 'Yellow' AS deal_name, 'Initial Contact' AS deal_stage, 'usd' AS currency, '2,500' AS deal_value
+        2 AS id, 'user 1' AS user, 'Sam Allison' AS sales_rep, 'Yellow' AS deal_name, 'Initial Contact' AS deal_stage, 'usd' AS currency, 2500 AS deal_value
       UNION ALL
       SELECT
-        3 AS id, 'user 1' AS user, 'John Smith' AS sales_rep, 'Red' AS deal_name, 'Proposal Sent' AS deal_stage, 'usd' AS currency, '2,000' AS deal_value
+        3 AS id, 'user 1' AS user, 'John Smith' AS sales_rep, 'Red' AS deal_name, 'Proposal Sent' AS deal_stage, 'usd' AS currency, 2000 AS deal_value
       UNION ALL
       SELECT
-        4 AS id, 'user 1' AS user, 'John Smith' AS sales_rep, 'Blue' AS deal_name, 'Qualification' AS deal_stage, 'eur' AS currency, '1,750' AS deal_value
+        4 AS id, 'user 1' AS user, 'John Smith' AS sales_rep, 'Blue' AS deal_name, 'Qualification' AS deal_stage, 'eur' AS currency, 1750 AS deal_value
       UNION ALL
       SELECT
-        5 AS id, 'user 1' AS user, 'John Smith' AS sales_rep, 'Orange' AS deal_name, 'Proposal Sent' AS deal_stage, 'eur' AS currency, '2,250' AS deal_value
+        5 AS id, 'user 1' AS user, 'John Smith' AS sales_rep, 'Orange' AS deal_name, 'Proposal Sent' AS deal_stage, 'eur' AS currency, 2250 AS deal_value
       UNION ALL
       SELECT
-        6 AS id, 'user 2' AS user, 'Jenny Star' AS sales_rep, 'Tree' AS deal_name, 'Call' AS deal_stage, 'jpy' AS currency, '25,000' AS deal_value
+        6 AS id, 'user 2' AS user, 'Jenny Star' AS sales_rep, 'Tree' AS deal_name, 'Call' AS deal_stage, 'jpy' AS currency, 25000 AS deal_value
       UNION ALL
       SELECT
-        7 AS id, 'user 2' AS user, 'Jenny Star' AS sales_rep, 'Cloud' AS deal_name, 'Call' AS deal_stage, 'aud' AS currency, '2,800' AS deal_value
+        7 AS id, 'user 2' AS user, 'Jenny Star' AS sales_rep, 'Cloud' AS deal_name, 'Call' AS deal_stage, 'aud' AS currency, 2800 AS deal_value
       UNION ALL
       SELECT
         8 AS id, 'user 2' AS user, 'Jenny Star' AS sales_rep, 'Fish' AS deal_name, 'Email' AS deal_stage, 'aud' AS currency, 750 AS deal_value
       UNION ALL
       SELECT
-        9 AS id, 'user 2' AS user, 'Sandra Lee' AS sales_rep, 'Cat' AS deal_name, 'Contract' AS deal_stage, 'rmb' AS currency, '8,250' AS deal_value
+        9 AS id, 'user 2' AS user, 'Sandra Lee' AS sales_rep, 'Cat' AS deal_name, 'Contract' AS deal_stage, 'rmb' AS currency, 8250 AS deal_value
       UNION ALL
       SELECT
-        10 AS id, 'user 2' AS user, 'Josephine Hargrave' AS sales_rep, 'Fish' AS deal_name, 'Initial Contact' AS deal_stage, 'usd' AS currency, '2,500' AS deal_value
+        10 AS id, 'user 2' AS user, 'Josephine Hargrave' AS sales_rep, 'Fish' AS deal_name, 'Initial Contact' AS deal_stage, 'usd' AS currency, 2500 AS deal_value
       UNION ALL
       SELECT
-        11 AS id, 'user 1' AS user, 'Chicken Dancer' AS sales_rep, 'Blue' AS deal_name, 'Qualification' AS deal_stage, 'usd' AS currency, '2,000' AS deal_value
+        11 AS id, 'user 1' AS user, 'Chicken Dancer' AS sales_rep, 'Blue' AS deal_name, 'Qualification' AS deal_stage, 'usd' AS currency, 2000 AS deal_value
 
 
       ;;
