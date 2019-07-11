@@ -428,7 +428,7 @@ view: martindata {
       end ;;
       #        when ${currency} = '&#8377' then '₹' --- Possible Solution
     # keep this copy
-     html: {% if value == "&#8377" %} ₹ {% else %} {{rendered_value}} {% endif %};;
+     html: {% if value == "&#8377" %} ₹ {% else %} {{value}} {% endif %};;
     # html: {% if value == "&#8377" %} ₹ {% else %} {{ value }} {% endif %};;
     # keep this copy n html: {% if value == "&#8377" %} ₹ {% else %} {{ value }} {% endif %};;
   }
