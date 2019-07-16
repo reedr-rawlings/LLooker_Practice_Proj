@@ -143,3 +143,8 @@ explore: users {
 }
 
 explore: users_nn {}
+
+map_layer: raphael_map {
+  file: "map_raphael.topojson"
+  property_key: "name"
+}
