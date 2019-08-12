@@ -10,6 +10,8 @@ datagroup: new_project_default_datagroup {
 
 persist_with: new_project_default_datagroup
 
+explore: test_count_query {}
+
 explore: events {
 #   always_filter: {
 #     filters: {

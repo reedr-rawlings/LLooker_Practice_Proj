@@ -19,6 +19,10 @@ view: order_items {
     dimension_group: usage {
     type: time
     timeframes: [
+      raw,
+      time,
+      hour,
+      time_of_day,
       date,
       week,
       month,
