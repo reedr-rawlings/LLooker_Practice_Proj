@@ -1,4 +1,5 @@
 view: orders {
+  view_label: "Orders"
   sql_table_name: demo_db.orders ;;
 
   dimension: id {
@@ -59,6 +60,14 @@ view: orders {
   }
 
   dimension: status {
+    description:
+    "{% if _explore._name == 'NormalName' %}
+    The user ID for the Order Items Explore
+    {% elsif _explore._name == 'inventory_items' %}
+    The user ID for the Inventory Items Explore
+    {% else %}
+    The user ID
+    {% endif %}"
     type: string
     sql: ${TABLE}.status ;;
   }

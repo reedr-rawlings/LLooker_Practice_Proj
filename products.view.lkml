@@ -18,14 +18,27 @@ view: products {
   }
 
   dimension: category {
+
     type: string
     sql: ${TABLE}.category ;;
+    drill_fields: [department_alias, retail_price]
   }
 
-  dimension: department {
+  dimension: department_alias {
+   # label: "Balloon"
+    alias: [department]
     type: string
     sql: ${TABLE}.department ;;
   }
+
+  measure: count_not_men {
+    type: count
+    drill_fields: [id, item_name, inventory_items.count]
+    filters: {
+      field: department_alias
+      value: "Men"
+    }
+    }
 
   dimension: item_name {
     type: string
@@ -61,14 +74,18 @@ view: products {
   measure: count {
     label: "Drill Count"
     type: count
-    drill_fields: [id, item_name, inventory_items.count]
-    link: {
-      label: "Show as bar plot"
-      url: "
-      {% assign vis_config = '{\"type\": \"looker_bar\"}' %}
-      {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
-   }
+    drill_fields: [details*]
+  #   link: {
+  #     label: "Show as bar plot"
+  #     url: "
+  #     {% assign vis_config = '{\"type\": \"looker_bar\"}' %}
+  #     {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
+  # }
  }
+
+  set: details {
+    fields: [id, item_name, inventory_items.count]
+    }
 
   measure: average_retail_price {
     type: average

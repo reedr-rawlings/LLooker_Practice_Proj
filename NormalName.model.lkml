@@ -2,6 +2,7 @@ connection: "thelook"
 
 # include all the views
 include: "*.view"
+# include: "*.dashboard"
 
 datagroup: new_project_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -11,6 +12,21 @@ datagroup: new_project_default_datagroup {
 persist_with: new_project_default_datagroup
 
 explore: test_count_query {}
+
+explore: orders_items_filtered {
+   from: order_items
+  always_filter: {
+    filters: {
+      field: sale_price
+      value: ">=100"
+    }
+  }
+  join: orders {
+    type: left_outer
+    sql_on: ${orders_items_filtered.order_id} = ${orders.id} ;;
+    relationship: many_to_one
+  }
+}
 
 explore: events {
 #   always_filter: {
