@@ -64,6 +64,7 @@ view: order_items {
       year
     ]
     sql: ${TABLE}.returned_at ;;
+    html: <font color="#42a338 ", size="4">{{ value }}</font> ;;
   }
 
   dimension: sale_price {
@@ -110,6 +111,7 @@ view: order_items {
     label_from_parameter: sale_price_metric_picker
     sql: {% parameter sale_price_metric_picker %}(${sale_price}) ;;
     value_format_name: usd
+    drill_fields: [order_id,total_revenue]
   }
 
   filter: category_count_picker {

@@ -53,29 +53,42 @@ view: orders {
     type: string
     sql: CASE
       WHEN {% parameter log_date_interval %} = 'Day'  THEN ${created_date}
-      WHEN {% parameter log_date_interval %} = 'Week'  THEN ${created_week}
+      WHEN {% parameter log_date_interval %} = 'Week'  THEN ${status}
       WHEN {% parameter log_date_interval %} = 'Month'  THEN ${created_month}
       WHEN {% parameter log_date_interval %} = 'Quarter' THEN ${created_quarter}
       END ;;
   }
 
   dimension: status {
-    description:
-    "{% if _explore._name == 'NormalName' %}
-    The user ID for the Order Items Explore
-    {% elsif _explore._name == 'inventory_items' %}
-    The user ID for the Inventory Items Explore
-    {% else %}
-    The user ID
-    {% endif %}"
+    description: "{{ _view._name }}"
+
+# "{% if _view._name == 'orders' %} ID for Users {% else %} Something else {% endif%}"
     type: string
     sql: ${TABLE}.status ;;
+  }
+
+  dimension: statuseseses {
+    description: "{{ _view._name }}"
+
+# "{% if _view._name == 'orders' %} ID for Users {% else %} Something else {% endif%}"
+    type: string
+    sql: ${TABLE}.status ;;
+
   }
 
   dimension: user_id {
     type: number
     # hidden: yes
     sql: ${TABLE}.user_id ;;
+  }
+
+  measure: filtered_count {
+    type: sum
+    sql: ${user_id} ;;
+    filters: {
+      field: status
+      value: "confirmed"
+    }
   }
 
   measure: user_count {

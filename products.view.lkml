@@ -8,9 +8,15 @@ view: products {
   }
 
   dimension: brand {
+
     type: string
     sql: ${TABLE}.brand ;;
     html:  <a href="https://www.google.com/search?q={{value}}">{{ value }}</a> ;;
+  }
+
+  dimension: yesnobrand {
+    type: yesno
+    sql: ${TABLE}.brand = "PUMA" ;;
   }
 
   parameter: does_this_filter {
@@ -18,11 +24,12 @@ view: products {
   }
 
   dimension: category {
-
     type: string
     sql: ${TABLE}.category ;;
-    drill_fields: [department_alias, retail_price]
+    drill_fields: [department_alias, retail_price, orders.statuseseses]
   }
+
+   set: charles_barks {fields: [orders.statuseseses]}
 
   dimension: department_alias {
    # label: "Balloon"
@@ -46,6 +53,7 @@ view: products {
   }
 
   dimension: rank_alias {
+    label: "NamingNames"
     alias: [ rank ]
     type: number
     sql: ${TABLE}.rank ;;
