@@ -33,6 +33,14 @@ view: orders {
     sql: CAST(${TABLE}.created_at AS time) ;;
   }
 
+  measure: filtered_dates {
+    type: count
+    filters: {
+      field: created_date
+      value: "before this month"
+    }
+  }
+
   parameter: log_date_interval {
     type: string
     allowed_value: {
@@ -46,6 +54,16 @@ view: orders {
     }
     allowed_value: {
       value: "Quarter"
+    }
+  }
+
+  measure: returned_count {
+    type: count_distinct
+    sql: ${id} ;;
+    drill_fields: []
+    link: {
+      label: "Explore Top 20 Results"
+      url: "{{ link }}&limit=20"
     }
   }
 
@@ -97,14 +115,12 @@ view: orders {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [id, users.first_name, users.last_name, users.id, order_items.count]
     html:
     <br>
-     Value: {{value}}
-    </br>
-    <br>
-    {% if products.brand._in_query %} {{ products.brand._value }} {% endif %}
+      {{ products.brand._value  }} : {{rendered_value}}
     </br>
     ;;
   }

@@ -13,6 +13,7 @@ persist_with: new_project_default_datagroup
 
 explore: test_count_query {}
 
+
 explore: orders_items_filtered {
    from: order_items
   always_filter: {
@@ -28,6 +29,8 @@ explore: orders_items_filtered {
   }
 }
 
+explore: windowfunction {}
+
 explore: events {
 #   always_filter: {
 #     filters: {
@@ -42,7 +45,8 @@ explore: events {
    }
 }
 
-explore: martindata {}
+
+
 
 explore: ordersliquidlogic {
   join: inventory_items {
