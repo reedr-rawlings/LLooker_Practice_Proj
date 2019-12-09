@@ -58,7 +58,28 @@ view: ordersliquidlogic {
       sql: ${inventory_items.cost} ;;
     }
 
+    dimension: my_counter {
+      sql: 0 ;;
+    }
 
+    # Must define an associated measure and then reference that field throughout. When using any sort of math
+    # It defaults to calculating it out. So the below is equal to -38
+    dimension: incremental {
+      sql:
+      {% assign my_counter = '12-31-19' %}
+      {{my_counter}}
+
+
+      ;;
+    }
+
+    measure: promo_totals {
+      hidden: yes
+      description: "Must be used with measure_name field"
+      value_format:  "[<=-1000000]($0.0,,\"M\");[<=-1000]($0.0,\"K\");$0"
+      type: sum
+      sql: ${retail_price} * 0.9 ;;
+    }
 
   parameter: measure_name {
     type: unquoted
@@ -80,6 +101,10 @@ view: ordersliquidlogic {
       label: "Cost"
       value: "cost"
     }
+    allowed_value: {
+      label: "Promo Total"
+      value: "promo_totals"
+    }
   }
 
   measure: currency {
@@ -94,16 +119,19 @@ view: ordersliquidlogic {
           else null
           end;;
   }
-  # measure: negative_currency
-  # {
-  #   label_from_parameter:  measure_name
-  #   type: number
-  #   value_format:  "[<=-1000000]($0.0,,\"M\");[<=-1000]($0.0,\"K\");($0)"
-  #   sql:  CASE
-  #     WHEN '{% parameter measure_name %}' = 'promo_totals' then ${promo_totals}
-  #     else null
-  #     end;;
-  # }
+
+  #Currently does not function as expected
+  measure: negative_currency
+  {
+    label_from_parameter:  measure_name
+    type: number
+    sql:
+       CASE
+       WHEN '{% parameter measure_name %}' = 'promo_totals' then ${promo_totals}
+       else null
+       end;;
+  }
+
 
 
   measure: numbers
@@ -126,6 +154,7 @@ view: ordersliquidlogic {
             WHEN '{% parameter measure_name %}' = 'gross_product' then ${gross_product}
             WHEN '{% parameter measure_name %}' = 'rank_alias' then ${rank_alias}
             WHEN '{% parameter measure_name %}' = 'cost' then ${cost}
+            WHEN '{% parameter measure_name %}' = 'promo_totals' then ${promo_totals}
             else null
             end;;
     html: {% if {{measure_name._parameter_value}} == "retail_price" %}

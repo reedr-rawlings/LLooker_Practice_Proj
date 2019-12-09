@@ -14,7 +14,9 @@ persist_with: new_project_default_datagroup
 explore: test_count_query {}
 
 
+
 explore: orders_items_filtered {
+  label: "Filtered Labels"
    from: order_items
   always_filter: {
     filters: {
@@ -23,6 +25,7 @@ explore: orders_items_filtered {
     }
   }
   join: orders {
+    view_label: "Charmander"
     type: left_outer
     sql_on: ${orders_items_filtered.order_id} = ${orders.id} ;;
     relationship: many_to_one
@@ -79,31 +82,37 @@ explore: order_items_price_filter {
 }
 
 explore: order_items {
-  view_label: "Order Items no price"
+  label: "Order Items 12"
   join: inventory_items {
+    view_label: "Holy Moly"
     type: left_outer
     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
     relationship: many_to_one
   }
 
   join: orders {
+    view_label: "Korn"
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
     relationship: many_to_one
   }
 
   join: products {
+    view_label: "Quorn"
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
     relationship: many_to_one
   }
 
   join: users {
+    view_label: "Shorn"
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
   }
 }
+
+
 
 explore: orders {
   join: users {

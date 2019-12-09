@@ -7,7 +7,7 @@ view: order_items {
           must_filter_on_org_and_date
     {% endif %} ;;
 
-   sql_table_name: demo_db.order_items ;;
+   #sql_table_name: demo_db.order_items ;;
 
   # dimension: limited_spectrum {
   #   type: yesno

@@ -1,5 +1,5 @@
 view: orders {
-  view_label: "Orders"
+  view_label: "OrdersBorders"
   sql_table_name: demo_db.orders ;;
 
   dimension: id {
@@ -83,6 +83,7 @@ view: orders {
 # "{% if _view._name == 'orders' %} ID for Users {% else %} Something else {% endif%}"
     type: string
     sql: ${TABLE}.status ;;
+    html: <a style="white-space:pre;"> {{value}};;
   }
 
   dimension: statuseseses {
