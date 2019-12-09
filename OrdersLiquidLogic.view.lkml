@@ -58,20 +58,21 @@ view: ordersliquidlogic {
       sql: ${inventory_items.cost} ;;
     }
 
-    dimension: my_counter {
-      sql: 0 ;;
-    }
+    # dimension: my_counter {
+    #   sql: {%assign sku = 0%}
+    #   ;;
+    # }
 
     # Must define an associated measure and then reference that field throughout. When using any sort of math
     # It defaults to calculating it out. So the below is equal to -38
-    dimension: incremental {
-      sql:
-      {% assign my_counter = '12-31-19' %}
-      {{my_counter}}
+    # dimension: incremental {
+    #   sql:
+    #   {% assign my_counter == '12-31-19' %}
+    #   {{my_counter}}
 
 
-      ;;
-    }
+    #   ;;
+    # }
 
     measure: promo_totals {
       hidden: yes
@@ -81,6 +82,9 @@ view: ordersliquidlogic {
       sql: ${retail_price} * 0.9 ;;
     }
 
+  filter: dbnexttest  {
+    sql: ${category} ;;
+  }
   parameter: measure_name {
     type: unquoted
     allowed_value:

@@ -82,30 +82,28 @@ explore: order_items_price_filter {
 }
 
 explore: order_items {
-  label: "Order Items 12"
+
   join: inventory_items {
-    view_label: "Holy Moly"
+
     type: left_outer
     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
     relationship: many_to_one
   }
 
   join: orders {
-    view_label: "Korn"
+
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
     relationship: many_to_one
   }
 
   join: products {
-    view_label: "Quorn"
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
     relationship: many_to_one
   }
 
   join: users {
-    view_label: "Shorn"
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
