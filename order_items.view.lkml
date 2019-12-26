@@ -1,11 +1,7 @@
 view: order_items {
-    sql_table_name: {% if _user_attributes['unlimited_spectrum'] == "yes" %}
-      demo_db.order_items
-    {% elsif order_id._is_filtered and usage_date._is_filtered == "true" %}
-          demo_db.order_items
-      {% else %}
-          must_filter_on_org_and_date
-    {% endif %} ;;
+    sql_table_name:
+          demo_db.order_items;;
+
 
    #sql_table_name: demo_db.order_items ;;
 

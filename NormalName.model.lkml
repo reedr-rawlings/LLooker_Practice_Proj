@@ -13,7 +13,7 @@ persist_with: new_project_default_datagroup
 
 explore: test_count_query {}
 
-
+explore: map_layer_GCP {}
 
 explore: orders_items_filtered {
   label: "Filtered Labels"
@@ -176,4 +176,8 @@ explore: users_nn {}
 map_layer: raphael_map {
   file: "map_raphael.topojson"
   property_key: "name"
+}
+
+map_layer: Middle_Layer_Supe {
+  file: "ML_uk.topojson"
 }

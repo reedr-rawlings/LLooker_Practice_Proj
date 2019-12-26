@@ -61,6 +61,7 @@ view: products {
     }
 
   dimension: item_name {
+    map_layer_name: Middle_Layer_Supe
     type: string
     sql: ${TABLE}.item_name ;;
   }
