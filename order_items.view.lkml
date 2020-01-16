@@ -3,14 +3,19 @@ view: order_items {
           demo_db.order_items;;
 
 
-   #sql_table_name: demo_db.order_items ;;
+  dimension: id_liquid {
+    case: {
+      when: {
+        label: "b {{ _user_attributes[\"id\"] | plus:0.1  }}"
+        sql: ${id} = {{ _user_attributes['id'] | plus:0.5}};;
+      }
+      when: {
+        label: "a {{ _user_attributes[\"id\"] | minus:0.1  }}"
+        sql: ${id}>={{ _user_attributes['id'] | minus:1.0 | divided_by:100.0 }} ;;
+      }
 
-  # dimension: limited_spectrum {
-  #   type: yesno
-  #   sql:  {%if ((usage_date._is_filtered or usage_week._is_filtered)
-  #     and (order_id._is_filtered or inventory_item_id._is_filtered)) %}
-  #   {% endif %};;
-  # }
+    }
+    }
 
     dimension_group: usage {
     type: time
@@ -143,5 +148,15 @@ view: order_items {
     value_format_name: usd
   }
 
+  measure: percent_total_revenue {
+    type: percent_of_total
+    sql: ${total_revenue};;
+    value_format_name: usd
+  }
+
+  measure: coalesce_percent {
+    type: number
+    sql: coalesce(${percent_total_revenue}, 0) ;;
+  }
 
 }

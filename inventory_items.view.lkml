@@ -50,4 +50,14 @@ view: inventory_items {
     type: count
     drill_fields: [id, products.item_name, products.id, order_items.count]
   }
+
+  measure: string_case {
+    type: string
+    sql: CASE
+    WHEN ${count} < 100 THEN "Renew"
+    WHEN ${count} > 100 THEN "Don't Renew"
+    ELSE  "Else"
+    END
+    ;;
+  }
 }
