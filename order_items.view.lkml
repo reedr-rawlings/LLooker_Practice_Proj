@@ -16,7 +16,7 @@ view: order_items {
     }
     }
 
-    dimension_group: usage {
+    dimension_group: USAGE {
     type: time
     timeframes: [
       raw,
@@ -47,6 +47,7 @@ view: order_items {
   }
 
   dimension: order_id {
+    label: "ORDER ID"
     type: number
     # hidden: yes
     sql: ${TABLE}.order_id ;;
