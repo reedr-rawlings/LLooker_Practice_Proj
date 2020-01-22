@@ -4,6 +4,13 @@ connection: "thelook"
 include: "*.view"
 include: "*.dashboard"
 
+access_grant: access_grant_name {
+  user_attribute: unlimited_spectrum
+  allowed_values: [ "Kevin" ]
+}
+
+
+
 datagroup: new_project_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
@@ -82,6 +89,7 @@ explore: order_items_price_filter {
 }
 
 explore: order_items {
+  required_access_grants: [access_grant_name]
 
   join: inventory_items {
 
