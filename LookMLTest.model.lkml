@@ -2,7 +2,7 @@ connection: "thelook"
 
 # include all the views
 include: "*.view"
-# include: "*.dashboard"
+include: "PracticeLookML.dashboard"
 
 datagroup: new_project_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -17,7 +17,7 @@ explore: map_layer_GCP {}
 
 explore: orders_items_filtered {
   label: "Filtered Labels"
-   from: order_items
+  from: order_items
   always_filter: {
     filters: {
       field: sale_price
@@ -41,11 +41,11 @@ explore: events {
 #       value: "users"
 #     }
 #   }
-  join: users {
-    type: left_outer
-    sql_on: ${events.user_id} = ${users.id} ;;
-    relationship: many_to_one
-   }
+join: users {
+  type: left_outer
+  sql_on: ${events.user_id} = ${users.id} ;;
+  relationship: many_to_one
+}
 }
 
 
@@ -134,7 +134,7 @@ explore: products {
     relationship: many_to_one
   }
 
-    join: orders {
+  join: orders {
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
     relationship: many_to_one
