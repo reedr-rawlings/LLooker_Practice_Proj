@@ -12,6 +12,36 @@ view: inventory_items {
     sql: ${TABLE}.cost ;;
   }
 
+  filter: date_lf {
+    type: date
+  }
+
+  dimension: date_start_liquid {
+    type: yesno
+    sql: ${created_date} <= {% date_start date_lf %} ;;
+  }
+
+  dimension: date_end_liquid {
+    type: yesno
+    sql: ${created_date} <= {% date_end date_lf %} ;;
+  }
+
+  measure: count_start {
+    type: count
+    filters: {
+      field: date_start_liquid
+      value: "yes"
+    }
+  }
+
+  measure: count_end {
+    type: count
+    filters: {
+      field: date_end_liquid
+      value: "yes"
+    }
+  }
+
   dimension_group: created {
     type: time
     timeframes: [

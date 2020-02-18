@@ -17,6 +17,7 @@ view: orders {
       week,
       month,
       quarter,
+      quarter_of_year,
       year
     ]
     drill_fields: []
@@ -83,16 +84,18 @@ view: orders {
 # "{% if _view._name == 'orders' %} ID for Users {% else %} Something else {% endif%}"
     type: string
     sql: ${TABLE}.status ;;
-    html: <a style="white-space:pre;"> {{value}};;
+
+
   }
 
   dimension: statuseseses {
-    description: "{{ _view._name }}"
-
-# "{% if _view._name == 'orders' %} ID for Users {% else %} Something else {% endif%}"
     type: string
     sql: ${TABLE}.status ;;
-
+    html: {% if status._value == 'pending' %}
+     <font color="#42a338 "> %{{ rendered_value }} </font>
+    {% elsif status._value == 'complete' %}
+   <font> ${{ rendered_value }} </font>
+    {% endif %};;
   }
 
   dimension: user_id {

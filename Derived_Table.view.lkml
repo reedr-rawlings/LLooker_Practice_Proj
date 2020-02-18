@@ -11,6 +11,8 @@ view: derived_table {
     JOIN products
     ON products.id = order_items.inventory_item_id
     WHERE order_items.inventory_item_id > 100;;
+    persist_for: "24 hours"
+    indexes: ["orders.id"]
   }
 #sadsadasd
   dimension: order_status {

@@ -12,8 +12,20 @@ view: order_items {
         label: "a {{ _user_attributes[\"id\"] | minus:0.1  }}"
         sql: ${id}>={{ _user_attributes['id'] | minus:1.0 | divided_by:100.0 }} ;;
       }
-
     }
+  }
+
+    filter: date_filter_start {
+      type: date
+    }
+
+    filter: date_filter_end {
+      type: date
+    }
+
+    dimension: number_on_filter {
+      type: number
+      sql: {% date_start date_filter_start %} - {% date_start date_filter_end %} ;;
     }
 
     dimension_group: USAGE {
@@ -51,6 +63,35 @@ view: order_items {
     type: number
     # hidden: yes
     sql: ${TABLE}.order_id ;;
+  }
+
+  parameter: campaign_performance_level {
+    type: unquoted
+    allowed_value: {
+      label: "Parent"
+      value: "tth_fact_marketing_parent_campaign_performance"
+    }
+    allowed_value: {
+      label: "Child"
+      value: "fact_marketing_campaign_performance"
+    }
+  }
+
+  dimension: campaign_id {
+# hidden: yes # only used to join with Dim Marketing Campaign
+
+    label:
+    "{% if campaign_performance_level._parameter_value == 'tth_fact_marketing_parent_campaign_performance' %}
+    Parent Campaign ID
+    {% else %}
+    Child Campaign ID
+    {% endif %}"
+    type: string
+    sql: {% if campaign_performance_level._parameter_value == 'tth_fact_marketing_parent_campaign_performance' %}
+      ${TABLE}.id
+      {% else %}
+      ${TABLE}.order_id
+      {% endif %} ;;
   }
 
   dimension_group: returned {
