@@ -200,4 +200,29 @@ view: order_items {
     sql: coalesce(${percent_total_revenue}, 0) ;;
   }
 
+  measure: count {
+    type: count
+    drill_fields: [inventory_item_id, Heather]
+    html:
+    <a href="{{count._link}}" target="_self">
+  {% if value > 10000 %}
+  <span style="color:#42a338;">{{rendered_value}}</span>
+  {% elsif value > 5000 %}
+   <span style="color:#ffb92e;">{{rendered_value}}</span>
+  {% else %}
+  <span style="color:#fa4444;">{{rendered_value}}</span>
+  {% endif %}
+    </a>;;
+  }
+
+
+measure: count_sarah {
+    type: count
+    drill_fields: [id, users.first_name, users.last_name, users.id, order_items.count]
+    html:<a href={{link}}>
+    {% if {{orders.count._value}} > 0 %}
+    <span style=“font-weight: bold; background-color: #E0434B; font-color:#ffffff; margin: 0; border-radius: 5px; text-align:center;color: white “>{{ value }}</span>
+    {% else %} <span style=“color:black; font-size:100%; text-align:center”>{{value}}</span>
+    {% endif %} </a>;;
+}
 }

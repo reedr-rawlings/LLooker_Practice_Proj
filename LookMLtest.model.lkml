@@ -20,8 +20,6 @@ persist_with: new_project_default_datagroup
 
 explore: test_count_query {}
 
-explore: map_layer_GCP {}
-
 explore: orders_items_filtered {
   label: "Filtered Labels"
   from: order_items
@@ -164,7 +162,6 @@ explore: user_data {
     relationship: many_to_one
   }
 }
-explore: csv_to_sql_query {}
 
 explore: extend_dt {}
 
