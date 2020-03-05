@@ -58,6 +58,7 @@ explore: ordersliquidlogic {
 }
 
 explore: extend_inventory_items {
+  view_label: "Where is this"
   extends: [inventory_items]
 }
 
