@@ -57,8 +57,12 @@ explore: ordersliquidlogic {
   }
 }
 
+explore: extend_inventory_items {
+  extends: [inventory_items]
+}
 
 explore: inventory_items {
+  view_name: inventory_items
   # Should be throwing an error
   fields: [ALL_FIELDS*]#, -products.category]
   join: products {

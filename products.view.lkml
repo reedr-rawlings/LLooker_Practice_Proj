@@ -18,6 +18,11 @@ view: products {
     type: string
   }
 
+  dimension: status {
+    type: string
+    sql: orders.status ;;
+  }
+
   dimension: brand_comparitor {
     sql:
      CASE
